@@ -5,7 +5,6 @@ console
 import cmd
 import re
 from shlex import split
-
 from models import storage
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -49,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def do_quit(self, arg):
-        """Ends the interpreter window and exits the program."""
+        """Quit command to exit the program\n"""
 
         return True
 

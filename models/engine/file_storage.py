@@ -2,9 +2,7 @@
 """
 FileStorage
 """
-
 import json
-
 import models
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -16,11 +14,13 @@ from models.user import User
 
 
 class FileStorage:
+    """Represents abstract storage engine.
+
+    Attributes:
+        __file_path (str): The name of the file to save objects to.
+        __objects (dict): A dictionary of instantiated objects.
     """
-    Represents abstract storage engine and contains methods that
-    serializes instances of BaseModel to a JSON file and
-    deserializes JSON file to instances of BaseModel
-    """
+
     __file_path = "file.json"
     __objects = {}
 
