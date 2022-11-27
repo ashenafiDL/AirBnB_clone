@@ -166,7 +166,7 @@ class HBNBCommand(cmd.Cmd):
                 _all = []
                 for obj in store.values():
                     if obj.__class__.__name__ == tokens[0]:
-                        _all.append(str(obj))
+                        _all.append(obj.__str__())
         print(_all)
 
     def do_update(self, arg):
@@ -175,7 +175,6 @@ class HBNBCommand(cmd.Cmd):
             """a given id by adding or updating attribute."""
         store = storage.all()
         tokens = parse(arg)
-        print(tokens)
         if len(tokens) == 0:
             print("** class name missing **")
         elif tokens[0] not in HBNBCommand.__articles:
@@ -187,7 +186,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(tokens) == 2:
             print("** attribute name missing **")
         elif len(tokens) == 3:
-            if (type(eval(tokens[2])) != dict):
+            if(type(eval(tokens[2])) != dict):
                 print("** value missing **")
             else:
                 obj = store["{}.{}".format(tokens[0], tokens[1])]
