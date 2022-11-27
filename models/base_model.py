@@ -16,10 +16,6 @@ class BaseModel:
         tformat = "%Y-%m-%dT%H:%M:%S.%f"
         if len(kwargs) != 0:
             for k, v in kwargs.items():
-                """ if k == "__class__":
-                    pass
-                el
-                """
                 if k == "created_at" or k == "updated_at":
                     self.__dict__[k] = datetime.strptime(v, tformat)
                 else:
