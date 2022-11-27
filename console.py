@@ -186,12 +186,14 @@ class HBNBCommand(cmd.Cmd):
         elif len(tokens) == 2:
             print("** attribute name missing **")
             return
+
         if len(tokens) == 3:
             try:
                 type(eval(tokens[2])) != dict
             except NameError:
                 print("** value missing **")
-                return
+                return False
+
         if len(tokens) == 4:
             obj = store["{}.{}".format(tokens[0], tokens[1])]
             if tokens[2] in obj.__class__.__dict__.keys():
@@ -210,6 +212,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[k] = v
         storage.save()
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
