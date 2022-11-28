@@ -185,32 +185,29 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         elif len(tokens) == 2:
             print("** attribute name missing **")
-            return
-
-        if len(tokens) == 3:
+        elif len(tokens) == 3:
             try:
-                type(eval(tokens[2])) != dict
+                if(type(eval(tokens[2])) != dict):
+                    obj = store["{}.{}".format(tokens[0], tokens[1])]
+                    for k, v in eval(tokens[2]).items():
+                        if (k in obj.__class__.__dict__.keys() and
+                                type(obj.__class__.__dict__[k] in
+                                     {str, int, float})):
+                            valtype = type(obj.__class__.__dict__[k])
+                            obj.__dict__[k] = valtype(v)
+                        else:
+                            obj.__dict__[k] = v
             except NameError:
                 print("** value missing **")
                 return False
 
-        if len(tokens) == 4:
+        else:
             obj = store["{}.{}".format(tokens[0], tokens[1])]
             if tokens[2] in obj.__class__.__dict__.keys():
                 valtype = type(obj.__class__.__dict__[tokens[2]])
                 obj.__dict__[tokens[2]] = valtype(tokens[3])
             else:
                 obj.__dict__[tokens[2]] = tokens[3]
-        elif type(eval(tokens[2])) == dict:
-            obj = store["{}.{}".format(tokens[0], tokens[1])]
-            for k, v in eval(tokens[2]).items():
-                if (k in obj.__class__.__dict__.keys() and
-                        type(obj.__class__.__dict__[k] in
-                             {str, int, float})):
-                    valtype = type(obj.__class__.__dict__[k])
-                    obj.__dict__[k] = valtype(v)
-                else:
-                    obj.__dict__[k] = v
         storage.save()
 
 
