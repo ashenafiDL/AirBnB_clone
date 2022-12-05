@@ -2,9 +2,10 @@
 
 This is the first part of the ALX's AirBnB clone project.
 
-In this project we built the console - a command interpreter to manage the AirBnB objects.
+In this project we built the console
+- a command interpreter to manage the AirBnB objects.
 
-The command interpreter will be able to do the following things:-
+The command interpreter will be able to do the following things: -
 
 - Create a new object (ex: a new User or a new Place)
 - Retrieve an object from a file, a database etc…
